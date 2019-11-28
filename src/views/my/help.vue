@@ -1,7 +1,7 @@
 <template>
   <div style="padding-top:44px">
     <van-nav-bar
-      :title="$router.history.current.name"
+      :title="$route.query.name"
       left-text="返回"
       left-arrow
       @click-left="go"
@@ -125,7 +125,8 @@ export default {
     })
   },
   created() {
-    console.log(this.$router.history.current.name);
+    // console.log(this.$router.history.current.name);
+
   }
 };
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div class="pad-bot">
+  <div class="pad-bot" style="max-width:640px;">
     <div v-if="!ispush1">
       <van-nav-bar title="我的购物袋" heighe:2.5rem />
       <div class="br-bor"></div>
@@ -43,36 +43,44 @@
             <van-button size="mini" @click="jian(value,ispushList1[i])">-</van-button>
 
             <div style="margin-top:1rem;">
-              <van-button round type="danger" size="mini" @click="redel(i,value,ispushList1[i])">删除</van-button>
+              <van-button
+                round
+                type="danger"
+                size="mini"
+                @click="redel(i,value,ispushList1[cityId])"
+              >删除</van-button>
             </div>
           </div>
         </van-card>
       </div>
-      <van-submit-bar :price="price1" button-text="提交订单" @submit="onSubmit(ispushList)">
+      <!-- {{$store.state.city.id}} -->
+      <!-- {{money}} -->
+      <van-popup v-model="show">{{price1}}</van-popup>
+      <van-submit-bar :price="price1" button-text="结算 " @submit="onSubmit(ispushList)">
         <span slot="tip">
-          请确认收货人,
+          请确认收货人为:
+          <span
+            style="color:#333;"
+          >&nbsp;&nbsp;{{this.$store.state.city.cityList[$store.state.city.id].name}}</span>,
           <span style="color:#00b5ffcf;" @click="goCity">修改地址</span>
         </span>
       </van-submit-bar>
     </div>
-    <!-- 55555{{listAllData}} -->
-    <!-- {{ispushList}}
-    {{ispushList1}}
-    {{listAllData[$route.query.index].bannerList[$route.query.list]}} -->
   </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
-import { Notify } from "vant";
-// import func from '../../vue-temp/vue-editor-bridge';
+// import { Notify } from "vant";
 export default {
   data() {
     return {
       checked: 1,
       price: 1,
       display: this.ispush,
-      dataList: []
+      dataList: [],
+      money: this.price1,
+      show: false
     };
   },
   methods: {
@@ -85,12 +93,13 @@ export default {
     goCity() {
       this.$router.push("/city");
     },
-    onSubmit(arr) {
-      this.$store.commit("tijiao");
-      this.$store.commit("quanling",arr);
-      // this.$store.commit("isdisp");
-      Notify({ type: "success", message: "提交成功", duration: 2000 });
-      this.display = this.ispush;
+    onSubmit() {
+      //  this.show = true;
+      this.$router.push("/checkOut");
+      this.$store.commit("tijiao", this.price1);
+      // this.$store.commit("quanling", arr);
+
+      // this.display = this.ispush;
     },
     add1(index1, index2) {
       let arr = [index1, index2];
@@ -107,7 +116,7 @@ export default {
     }
   },
   created() {
-    console.log(this.ispush);
+    // console.log(this.ispush);
     // console.log(this.ispush)
   },
   computed: {
@@ -123,9 +132,9 @@ export default {
       // this.ispushList.forEach(value => {
       //    num += this.listAllData[value].bannerList[2].price * this.listAllData[value].bannerList[2].num * 100
       // });
-      var _this = this
+      var _this = this;
       this.ispushList.forEach(function(value, i) {
-        let index = _this.ispushList1[i]
+        let index = _this.ispushList1[i];
         num +=
           _this.listAllData[value].bannerList[index].price *
           _this.listAllData[value].bannerList[index].num *
@@ -133,21 +142,22 @@ export default {
       });
       return num;
     },
-    ispush1 : function(){
-        
-          if(this.ispushList.length !== 0 ){
-            return true
-          }else{
-            return false
-          }
-         
+    ispush1: function() {
+      if (this.ispushList.length !== 0) {
+        return true;
+      } else {
+        return false;
+      }
     }
-  },
+  }
 };
 </script>
 
 <style lang="less" scoped>
 .pad-bot {
+  min-width: 320px;
+  max-width: 640px;
+  width: 100%;
   padding-bottom: 5rem;
 }
 .van-nav-bar {
@@ -186,7 +196,7 @@ export default {
   display: inline-block;
   height: 2.1875rem;
   line-height: 2.1875rem;
-  color: #afadad;
+  color: #fff;
   background-color: #b81c22;
   width: 80%;
   margin-top: 10px;

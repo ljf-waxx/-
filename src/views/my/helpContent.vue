@@ -8,9 +8,9 @@
       style="position: fixed; top:0; width:100%;"
     ></van-nav-bar>
     <div style="padding:0px 10px">
-      <cm-article-content
+      <div
         class="padding ui-article-content rio ng-binding"
-        ng-bind-html="ctrl.data.content"
+       
         style="display: block; padding:0xp 10px;"
       >
         <p style="text-align: center;">
@@ -332,10 +332,10 @@
           <span
             style="font-family: 微软雅黑; letter-spacing: 0pt; font-size: 12px;"
           >
-            <o:p></o:p>
+            <!-- <o:p></o:p> -->
           </span>
         </p>
-      </cm-article-content>
+      </div>
     </div>
   </div>
 </template>
@@ -350,4 +350,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="less" scoped></style>

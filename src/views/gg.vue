@@ -8,7 +8,7 @@
 export default {
   data() {
     return {
-      num: 0,
+      num: 3,
       timer: null
     };
   },
@@ -32,6 +32,8 @@ export default {
 .banner {
   width: 100%;
   height: 100%;
+  min-width: 320px;
+  max-width: 640px;
   position: fixed;
   top: 0;
   bottom: 0;

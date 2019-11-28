@@ -1,7 +1,7 @@
 <template>
   <div style="padding-bottom:60px; ">
     <van-nav-bar
-      title="标题"
+      title="商品详情"
       left-text="返回"
       left-arrow
       @click-left="go"
@@ -13,8 +13,9 @@
     </div>
     <div class="product-info">
       <span class="price-up">
-        <small>￥</small>
-        {{ listsData[listIndex].bannerList[key].price }}
+        
+       <span style="font-size:30px; margin-right:10px;
+    font-weight: bolder;"> <span style="font-size:20px" >￥</span>{{ listsData[listIndex].bannerList[key].price }}</span>
       </span>
       <span class="price-down">
         <small>￥</small>
@@ -28,7 +29,7 @@
 
     <van-row class="cell-box">
       <van-col span="22">
-        <span>促销</span>
+        <span style="display:inline-block; padding-right:10px;">促销</span>
         <span class="cell-text"
           >&nbsp;&nbsp;[7折] &nbsp;&nbsp;&nbsp;莱珀妮单品专享7折</span
         >
@@ -36,33 +37,26 @@
       <van-col span="2">
         <van-icon name="arrow" />
       </van-col>
-       <!-- {{listIndex}}
-    {{key}}
-    {{listsData[listIndex].bannerList[key]}} -->
-
+    
       <van-col span="1">
-        <!-- <van-icon name="arrow" /> -->
       </van-col>
-      <van-col span="21" style="font-size:12px">
-        <p>三亚: 三亚凤凰机场离岛，至少提前6小时下单</p>
+      <van-col span="21" style="font-size:12px;line-height:26px;padding:8px 6px;">
+        <p><strong style="font-wight:bord;">三亚</strong>: 三亚凤凰机场离岛，至少提前6小时下单</p>
         <p>海口: 海口美兰机场离岛，至少提前1天下单</p>
         <p>注：购买时间视下单时段而定，具体说明请查看详情。</p>
       </van-col>
       <van-col span="2">
-        <br />
-        <br />
-        <br />
-        <van-icon name="arrow" />
+        
       </van-col>
 
-      <van-col span="24" style="height:26px"></van-col>
+      <!-- <van-col span="24" style="height:26px"></!--> 
 
       <van-col span="24" style="padding:0px 0px 15px 0px;">
-        <van-col span="22">
-          <span>促销</span>
+        <van-col span="22" class="shuxiao">
+          <span class="shuxiao-sub">说明：</span>
           <span class="cell-text"
-            >&nbsp;&nbsp;[7折] &nbsp;&nbsp;&nbsp;莱珀妮单品专享7折</span
-          >
+            >*&nbsp;&nbsp;</span
+          ><span class="cell-text">每件商品限购两件</span>
         </van-col>
         <van-col span="2">
           <van-icon name="arrow" />
@@ -71,13 +65,13 @@
     </van-row>
 <!-- {{listsData[key].bannerList[index]}} -->
     <!-- 底部banner -->
-    <van-tabs v-model="active" style="border-top:14px solid #eee;">
+    <van-tabs v-model="active" style="border-top:14px solid #eee; line-height:16px;">
       <van-tab title="相关搭配推荐">
         <!-- <banenrLiner ></banenrLiner> -->
-        <bannerLiner :lists="list1"></bannerLiner>
+        <bannerLiner :lists="list1" :index="2"></bannerLiner>
       </van-tab>
       <van-tab title="同类热销排行">
-        <bannerLiner :lists="list"></bannerLiner>
+        <bannerLiner :lists="list" :index="3"></bannerLiner>
       </van-tab>
     </van-tabs>
 
@@ -99,10 +93,12 @@
         type="warning"
         text="加入购物车"
         @click="onClickButton"
+        style="border-radius: 0;    background: #333;"
       />
       <van-goods-action-button
         type="danger"
         text="立即购买"
+        style="border-radius: 0;background: #b81c22;"
         @click="gobuy($route.query.index,$route.query.list)"
       />
     </van-goods-action>
@@ -147,7 +143,7 @@ export default {
     } 
   },
   created() {
-
+      // console.log(this.$route.query)
   },
   watch: {},
   computed: {
@@ -171,6 +167,7 @@ export default {
   width: 100%;
 }
 .cell-box {
+  margin-top: 0.5rem;
   padding: 0px 8px;
   font-size: 14px;
   .cell-text {
@@ -199,6 +196,7 @@ export default {
   h3.title2 {
     color: #333;
     font-size: 14px;
+    line-height: 22px;
     font-weight: 500;
   }
   .price-up {
@@ -211,7 +209,25 @@ export default {
   }
 }
 .pad {
-  padding: 0.5rem;
+  // padding: 0.5rem;
   z-index: 999;
+}
+.shuxiao{
+  line-height: 20px;
+  font-size: 12px;
+ 
+}
+.product-info{
+  // background-color: #999;
+  .price-up{
+    line-height: 30px;
+  }
+  .price-down{}
+  .van-goods-action{
+    padding: 0;
+  }
+  .van-goods-action-button--warning{
+    background-color: #b81c22;
+  }
 }
 </style>

@@ -3,6 +3,7 @@ import Vuex from "vuex";
 import bannerLiner from "./home/bannerLiner";
 import selectBox from "./home/selectBox";
 import shoppingCar from "./home/shoppingCar";
+import city from "./home/city"
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -12,7 +13,7 @@ export default new Vuex.Store({
   modules: {
     bannerLiner,
     selectBox,
-    shoppingCar
+    shoppingCar,city
   },
   children: {}
 });

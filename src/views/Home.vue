@@ -46,11 +46,12 @@
       <van-grid-item
         icon="https://pic.cdfgsanya.com/assets/upload/img/03deae7c51a68e9272490b4e001034b2.png"
         text="排行榜"
+        @click="$router.push('/rankingLIst')"
       />
-      <van-grid-item icon="todo-list-o" text="我的订单" @click="go(5)" />
-      <van-grid-item icon="balance-pay" text="优惠劵" />
-      <van-grid-item icon="after-sale" text="购物流程" />
-      <van-grid-item icon="contact" text="常见问题" />
+      <van-grid-item icon="todo-list-o" text="我的订单" @click="$router.push('/dingdan')" />
+      <van-grid-item icon="balance-pay" text="优惠劵" @click="$router.push('/youhui')" />
+      <van-grid-item icon="after-sale" text="购物流程" @click="$router.push('/help')" />
+      <van-grid-item icon="contact" text="常见问题" @click="$router.push('/wenti')" />
       <!-- <span class="iconfont  icon-6"></span> -->
     </van-grid>
     <!-- 宫格 end -->
@@ -66,33 +67,23 @@
         <img src="../assets/img/pic2.jpg" alt @click="go(3)" />
       </van-col>
     </van-row>
-    <!-- pic  end-->
-    <!-- 特卖 -->
-    <!-- {{dataList}} -->
+
     <div v-for="(value,i) in dataList" :key="i">
-      <!-- {{value.bannerList}} -->
-      <!-- {{plateData[i]}} -->
-      <!-- {{i}} -->
+      <!-- {{dataList[3].bannerList}} -->
       <plateNav :plateDatas="value.titleBox" :index="i"></plateNav>
       <bannerLiner :lists="value.bannerList" :index="i"></bannerLiner>
     </div>
-    <!-- <plateNav :plateDatas="plateData" :index="1"></plateNav>
-    <bannerLiner :lists="list"></bannerLiner>
+    <!-- {{dataList[2].bannerList[1]}} -->
+    <van-list v-model="loading" :finished="finished" @load="onLoad(1)">
+      <!-- <van-cell v-for="item in list" :key="item" :title="item + ''" /> -->
+      <div v-for="(value,i) in list" :key="i">
+        <!-- {{value}} -->
+      <plateNav :plateDatas="value.titleBox" :index="2"></plateNav>
+      <bannerLiner :lists="value.bannerList" :index="2"></bannerLiner>
 
-    <plateNav :plateDatas="plateData1" :index="2"></plateNav>
-    <bannerLiner :lists="list1"></bannerLiner>
-
-    <plateNav :plateDatas="plateData2" :index="3"></plateNav>
-    <bannerLiner :lists="list2"></bannerLiner>
-
-    <plateNav :plateDatas="plateData3"></plateNav>
-    <bannerLiner :lists="list3"></bannerLiner>
-    <plateNav :plateDatas="plateData4" :index="4"></plateNav>
-    <plateNav :plateDatas="plateData5" :index="5"></plateNav>
-    <plateNav :plateDatas="plateData6" :index="6"></plateNav>
-    <plateNav :plateDatas="plateData7" :index="7"></plateNav>
-    <plateNav :plateDatas="plateData8" :index="8"></plateNav> -->
-
+      </div>
+    </van-list>
+<GoTop></GoTop>
     <router-view></router-view>
   </div>
 </template>
@@ -102,10 +93,14 @@ import "../assets/font/iconfont.css";
 import bannerLiner from "../components/bannerLiner";
 import plateNav from "../components/plate-nav";
 import { mapState } from "vuex";
+import GoTop from '../components/GoTop'
 export default {
   data() {
     return {
-      value: ""
+      value: "",
+      list: [],
+       loading: false,
+      finished: false
     };
   },
   methods: {
@@ -114,29 +109,31 @@ export default {
     },
     goSearch() {
       this.$router.push("/search");
+    },
+    onLoad(item) {
+      // 异步更新数据
+      setTimeout(() => {
+        for (let i = 0; i < 1; i++) {
+          this.list.push(this.dataList[item]);
+        }
+        // 加载状态结束
+        this.loading = false;
+
+        // 数据全部加载完成
+        if (this.list.length >= 30) {
+          this.finished = true;
+        }
+      }, 2000);
     }
   },
-  components: { bannerLiner, plateNav },
+  components: { bannerLiner, plateNav ,GoTop},
   computed: {
     ...mapState({
-      dataList: state => state.bannerLiner.dataList,
-      // plateData: state => state.bannerLiner.navplate,
-      // list: state => state.bannerLiner.list,
-      // plateData1: state => state.bannerLiner.navplate1,
-      // list1: state => state.bannerLiner.list1,
-      // plateData2: state => state.bannerLiner.navplate2,
-      // list2: state => state.bannerLiner.list2,
-      // plateData3: state => state.bannerLiner.navplate3,
-      // list3: state => state.bannerLiner.list3,
-      // plateData4: state => state.bannerLiner.navplate4,
-      // plateData5: state => state.bannerLiner.navplate5,
-      // plateData6: state => state.bannerLiner.navplate6,
-      // plateData7: state => state.bannerLiner.navplate7,
-      // plateData8: state => state.bannerLiner.navplate8
+      dataList: state => state.bannerLiner.dataList
     })
   },
   created() {
-    console.log(this.$store.state);
+    // console.log(this.$store.state);
   }
 };
 </script>

@@ -60,7 +60,7 @@
 
     <!-- select tool end-->
 
-    <van-sticky :offset-top="50">
+    <!-- <van-sticky :offset-top="50"> -->
       <!-- <van-button type="info">吸顶距离</van-button> -->
       <van-divider>全部品牌</van-divider>
       <div :style="{height:windowHeight}">
@@ -70,8 +70,6 @@
               v-for="(item, index) in group.items"
               :key="index"
               :item="item"
-              @select="selectItem"
-              @title-click="clickTitle"
             >
               <div class="custom-item">
                 <!-- <img
@@ -84,7 +82,7 @@
           </cube-index-list-group>
         </cube-index-list>
       </div>
-    </van-sticky>
+    <!-- </van-sticky> -->
   </div>
 </template>
 
@@ -347,12 +345,12 @@ export default {
     goSearch() {
       this.$router.push("/search");
     },
-    selectItem(item) {
-      console.log(item.name);
-    },
-    clickTitle(title) {
-      console.log(title);
-    }
+    // selectItem(item) {
+    //   console.log(item.name);
+    // },
+    // clickTitle(title) {
+    //   console.log(title);
+    // }
   }
 };
 </script>

@@ -19,7 +19,7 @@
         :desc="value.tip"
         :title="value.title"
         :thumb="value.path"
-        @click="$router.push(`/buying?index=${i}&list=${2}`)"
+        @click="$router.push(`/buying?index=${i}&list=${0}`)"
       />
     </div>
     <!-- {{list}} -->

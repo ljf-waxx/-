@@ -1,37 +1,39 @@
 <template>
-  <div class>
+  <div style="height:100%;">
     <div class="swiper-container">
       <div class="swiper-wrapper">
-        <div class="swiper-slide">
+        <div class="swiper-slide"> 
           <img
-            src="../assets/img/swiper1.jpg"
-            class="animated zoomDown"
+            src="../assets/img/yd2.jpg"
+            class="animated jello animate-duration: 0.5s;"
             v-show="isshow"
             alt
           />
+          <h3 v-show="isshow" class="animated jello animate-duration: 0.5s;">安全，可靠，优质</h3>
         </div>
         <div class="swiper-slide">
           <img
-            src="../assets/img/swiper2.jpg"
-            class="animated slideInUp"
+            src="../assets/img/yd3.jpg"
+            class="animated jello animate-duration: 0.5s;"
             v-show="isshow"
             alt
           />
+          <h3 v-show="isshow" class="animated jello animate-duration: 0.5s;">健康，美丽，气质</h3>
         </div>
         <div class="swiper-slide">
           <img
-            src="../assets/img/swiper3.jpg"
-            class="animated zoomIn"
+            src="../assets/img/yd4.jpg"
+            class="animated jello animate-duration: 0.5s;"
+            width="100%"
             v-show="isshow"
             alt
           />
+          <h3 v-show="isshow" class="animated jello animate-duration: 0.5s;">安全，可靠，优质</h3>
         </div>
         <div class="swiper-slide wrapper">
-          <van-button type="primary" class="btn animated zoomIn" @click="go"
-            >立即开启</van-button
-          >
-
-          <img src="../assets/img/swiper4.jpg" class="animated zoomIn" alt />
+          <img src="../assets/img/yd6.jpg" class="animated zoomIn" alt  v-show="isshow" />
+          <br />
+          <van-button type="primary" class="btn animated zoomIn" @click="go" v-show="isshow">立即开启</van-button>
         </div>
       </div>
     </div>
@@ -49,7 +51,7 @@ export default {
   },
   methods: {
     go() {
-      this.$router.push("/gg");
+      this.$router.push("/home");
     }
   },
   mounted() {
@@ -69,24 +71,50 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.swiper-container {
-  height: 100%;
+.swiper-wrapper{
+  position: fixed;
 }
-
-img {
-  font-size: 0;
-  display: block;
+.swiper-slide {
   width: 100%;
+  height: 100%;
+  text-align: center;
+  padding-bottom: 200px;
+  box-sizing: border-box;
+  
+  img {
+    margin-top: 6.25rem;
+    width: 75%;
+  }
+  h3 {
+    text-align: center;
+    font-size: 1.25rem;
+    margin-top: 1.875rem;
+    color: darkolivegreen;
+  }
 }
+// .swiper-container {
+//   position: fixed;
+//   top:0;
+//   height: 100%;
+//   // background-color: #586a6a7d;
+// }
+
+// img {
+//   font-size: 0;
+//   display: block;
+//   width: 100%;
+// }
 .wrapper {
-  position: relative;
   .btn {
+    width: 36%;
+    margin-left: -18%;
     position: absolute;
-    bottom: 12%;
-    left: 50%;
-    width: 120px;
-    margin-left: -60px;
+    // bottom: -60%;
+    margin-top: 35px;
     z-index: 6666;
   }
+}
+.swiper-container {
+  // margin: auto 0;
 }
 </style>

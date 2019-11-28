@@ -410,7 +410,7 @@ export default {
   //   ]
   // },
   state: {
-    price : 0,
+    price: 0,
 
     dataList: [{
       titleBox: {
@@ -516,7 +516,7 @@ export default {
           path: require("../../assets/img/red3.jpg"),
           title: "Tom Ford Beauty",
           tip: "Coccinelle单肩背包EM0 19 01 01 Y05TU",
-          price: "X910.00",
+          price: "227.00",
           priceNot: "850.00",
           num: 0
         },
@@ -905,7 +905,7 @@ export default {
         path: require("../../assets/img/red3.jpg"),
         title: "Tom Ford Beauty",
         tip: "Coccinelle单肩背包EM0 19 01 01 Y05TU",
-        price: "X910.00",
+        price: "910.00",
         priceNot: "850.00",
         num: 0
       },
@@ -1152,7 +1152,7 @@ export default {
       let index1 = arr[0]
       let index2 = arr[1]
       state.dataList[index1].bannerList[index2].num++
-      
+
     },
     jian(state, arr) {
 
@@ -1177,11 +1177,11 @@ export default {
         state.dataList[index1].bannerList[index2].num += 1;
       }
     },
-    quanling(state , arr){
-      console.log(state,arr)
+    quanling(state, arr) {
+      console.log(state, arr)
 
       arr.forEach(value => {
-        state.dataList[value].bannerList.forEach(value =>{
+        state.dataList[value].bannerList.forEach(value => {
           value.num = 0
         })
       });

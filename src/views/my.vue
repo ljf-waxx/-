@@ -131,6 +131,12 @@ export default {
     }
   },
   created() {
+    if(localStorage.user){
+      this.name = localStorage.user
+      this.img = require('../assets/img/user.jpg')
+
+    }
+    // console.log(localStorage.user,localStorage.password)
     if (!localStorage.login) {
       // this.$router.push("/login");
     } else {
@@ -141,7 +147,7 @@ export default {
           }
         })
         .then(req => {
-          console.log(req.data.result);
+          // console.log(req.data.result);
           this.img = req.data.result.img;
           this.name = req.data.result.name;
         });
@@ -172,6 +178,7 @@ export default {
       border-radius: 50%;
     }
     .btn {
+      text-align: center;
       font-size: 20px;
     }
     > div {

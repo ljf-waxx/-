@@ -24,8 +24,18 @@
           />
         </van-popup>
       </van-tab>
-      <van-tab title="已用优惠卷">2</van-tab>
-      <van-tab title="过期优惠劵">3</van-tab>
+      <van-tab title="已用优惠卷">
+          <div class="box-content" style="margin-top:50px;">
+            <img src="../assets/img/youhui.png" alt="" width="100%">
+            <h4 style="margin:10px 0px; text-align:center;color:#666;"> 暂无优惠卷</h4>
+          </div>
+      </van-tab>
+      <van-tab title="过期优惠劵">
+          <div class="box-content" style="margin-top:50px;">
+            <img src="../assets/img/youhui.png" alt="" width="100%">
+            <h4 style="margin:10px 0px; text-align:center;color:#666;"> 暂无优惠卷</h4>
+          </div>
+      </van-tab>
     </van-tabs>
   </div>
 </template>

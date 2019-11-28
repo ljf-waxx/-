@@ -21,7 +21,10 @@ import lianxi from "../views/my/lianxi.vue";
 import help from "../views/my/help.vue";
 import helpContent from "../views/my/helpContent.vue";
 import mynav from "../views/my/myNav.vue";
-
+import wenti from "../views/wenti.vue"
+import rankingList from "../views/rankingLIst.vue"
+import recity from "../views/recity"
+import checkOut from "../views/checkOut"
 Vue.use(VueRouter);
 
 const routes = [
@@ -157,6 +160,22 @@ const routes = [
     path: "/quxiao",
     name: "已取消",
     component: mynav
+  },{
+    path:"/wenti",
+    name:"问题",
+    component : wenti
+  },{
+    path:"/rankingList",
+    name:"排行榜",
+    component : rankingList
+  },{
+    path:"/recity",
+    name:"排行榜",
+    component : recity
+  },{
+    path:"/checkOut",
+    name:"支付中心",
+    component : checkOut
   }
 ];
 

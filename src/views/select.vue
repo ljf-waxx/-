@@ -89,6 +89,8 @@ export default {
 
 <style lang="less" scoped>
 .wrapp-select {
+  max-width: 640px;
+  min-width: 320px;
   position: fixed;
   top: 3.375rem;
   height: auto;

@@ -7,29 +7,32 @@
       @click-left="go"
     ></van-nav-bar>
 
-    <van-address-list
-      v-model="chosenAddressId"
-      :list="list"
-      disabled-text="以下地址超出配送范围"
-      @add="onAdd"
-      @edit="onEdit"
-      @select="select"
-      v-show="show"
-    />
+    <van-address-edit
+  :area-list="areaList"
+  :address-info	 = "list[$route.query.id]"
+  show-postal
+  show-delete
+  show-set-default
+  show-search-result
+  :area-columns-placeholder="['请选择', '请选择', '请选择']"
+  @save="onSave"
+/>
+<!-- {{list[$route.query.id]}} -->
     <addCity v-show="!show" :show="show" @show="showfun"></addCity>
   </div>
 </template>
 
 <script>
 import addCity from "../views/addCity";
+import arealist from "../assets/js/area";
 import { Toast } from "vant";
 export default {
   data() {
     return {
       show: true,
-
+        areaList:arealist,
       chosenAddressId: "1",
-      list:  this.$store.state.city.cityList
+      list: this.$store.state.city.cityList
     };
   },
   components: { addCity },
@@ -39,20 +42,14 @@ export default {
     },
     onAdd() {
       Toast("新增地址");
-      console.log("aaa");
-      // this.$router.push("/addCity")
-      this.show = false;
+    
     },
 
-    onEdit(item,value) {
-      console.log(item,value)
-      this.$router.push({
-        path:`/recity?id=${value}`
-      })
-      // Toast("编辑地址尚未开放:" + index);
+    onEdit(item, index) {
+      Toast("编辑地址尚未开放:" + index);
     },
     showfun(value, objData) {
-      // console.log(value, objData);
+      window.console.log(value,objData);
       this.show = true;
       this.list.push({
         id: objData.id,
@@ -61,13 +58,25 @@ export default {
         address: objData.address
       });
     },
-    select(item,id) {
-      console.log(item)
+    select() {
       Toast("地址切换成功");
-      this.$store.commit("setId",id)
       this.$router.go(-1)
+    },
+    onSave(data){
+        // console.log(data)
+        // console.log(this.$store.state.city.cityList)
+        this.$router.go(-1)
+        let obj = {
+            id:this.$route.query.id,
+            data : data
+        }
+        this.$store.commit("getAddCity",obj)
     }
+  },
+  created(){
+      // console.log(this.$route)
   }
+  
 };
 </script>
 
